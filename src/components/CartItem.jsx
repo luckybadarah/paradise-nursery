@@ -31,11 +31,17 @@ const CartItem = () => {
   };
 
   const handleCheckout = () => {
-    alert("Checkout functionality coming soon!"); // Placeholder
+    if (cartItems.length === 0) {
+      alert("Your cart is empty!");
+      return;
+    }
+
+    alert(`Thank you for your purchase! Total: $${totalCart}`);
+    cartItems.forEach((item) => dispatch(removeItem(item.id)));
   };
 
   const handleContinueShopping = () => {
-    navigate("/"); // Go back to landing / product list
+    navigate("/");
   };
 
   return (
