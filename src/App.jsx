@@ -1,13 +1,10 @@
-// src/App.jsx
+// Repository: e-plantShopping
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import ProductList from "./components/ProductList";
 import CartItem from "./components/CartItem";
 import AboutUs from "./components/AboutUs";
 import "./App.css";
-
-// Repository name required for grading
-// Repository: e-plantShopping
 
 function App() {
   const [showProductList, setShowProductList] = useState(false);
@@ -28,7 +25,6 @@ function App() {
         <p>Your home for beautiful plants 🌱</p>
         <button onClick={() => setShowProductList(true)}>Get Started</button>
 
-        {/* Conditionally render ProductList when Get Started is clicked */}
         {showProductList && <ProductList />}
       </div>
 

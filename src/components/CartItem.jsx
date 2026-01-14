@@ -1,11 +1,13 @@
-// src/components/CartItem.jsx
+// Repository: e-plantShopping
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeItem, updateQuantity } from "../redux/CartSlice";
+import { useNavigate } from "react-router-dom";
 
 const CartItem = () => {
   const cartItems = useSelector((state) => state.cart.items);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const totalCart = cartItems.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -22,6 +24,18 @@ const CartItem = () => {
 
   const handleIncrement = (item) => {
     dispatch(updateQuantity({ id: item.id, quantity: item.quantity + 1 }));
+  };
+
+  const handleRemove = (id) => {
+    dispatch(removeItem(id));
+  };
+
+  const handleCheckout = () => {
+    alert("Checkout functionality coming soon!"); // Placeholder
+  };
+
+  const handleContinueShopping = () => {
+    navigate("/"); // Go back to landing / product list
   };
 
   return (
@@ -42,16 +56,24 @@ const CartItem = () => {
           <h3>{item.name}</h3>
           <p>Price: ${item.price}</p>
           <p>Quantity: {item.quantity}</p>
-          {/* Display individual item total */}
           <p>Total: ${item.price * item.quantity}</p>
 
           <button onClick={() => handleDecrement(item)}>-</button>
           <button onClick={() => handleIncrement(item)}>+</button>
-          <button onClick={() => dispatch(removeItem(item.id))}>Remove</button>
+          <button onClick={() => handleRemove(item.id)}>Delete</button>
         </div>
       ))}
 
       <h3>Grand Total: ${totalCart}</h3>
+
+      {cartItems.length > 0 && (
+        <div style={{ marginTop: "20px" }}>
+          <button onClick={handleCheckout} style={{ marginRight: "10px" }}>
+            Checkout
+          </button>
+          <button onClick={handleContinueShopping}>Continue Shopping</button>
+        </div>
+      )}
     </div>
   );
 };
