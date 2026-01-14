@@ -1,0 +1,26 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background: green;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar a {
+  color: white;
+  margin-left: 15px;
+  text-decoration: none;
+}
+
+.landing {
+  background-image: url("https://images.unsplash.com/photo-1501004318641-b39e6451bec6");
+  height: 90vh;
+  background-size: cover;
+  text-align: center;
+  padding-top: 150px;
+  color: white;
+}
