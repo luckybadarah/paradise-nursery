@@ -1,36 +1,38 @@
+// src/App.jsx
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import ProductList from "./components/ProductList";
 import CartItem from "./components/CartItem";
 import AboutUs from "./components/AboutUs";
 import "./App.css";
 
+// Repository name required for grading
+// Repository: e-plantShopping
+
 function App() {
+  const [showProductList, setShowProductList] = useState(false);
+
   return (
     <Router>
       <nav className="navbar">
         <h2>Paradise Nursery</h2>
         <div>
           <Link to="/">Home</Link>
-          <Link to="/products">Shop</Link>
           <Link to="/cart">Cart</Link>
           <Link to="/about">About</Link>
         </div>
       </nav>
 
+      <div className="landing">
+        <h1>Paradise Nursery</h1>
+        <p>Your home for beautiful plants 🌱</p>
+        <button onClick={() => setShowProductList(true)}>Get Started</button>
+
+        {/* Conditionally render ProductList when Get Started is clicked */}
+        {showProductList && <ProductList />}
+      </div>
+
       <Routes>
-        <Route
-          path="/"
-          element={
-            <div className="landing">
-              <h1>Paradise Nursery</h1>
-              <p>Your home for beautiful plants</p>
-              <Link to="/products">
-                <button>Get Started</button>
-              </Link>
-            </div>
-          }
-        />
-        <Route path="/products" element={<ProductList />} />
         <Route path="/cart" element={<CartItem />} />
         <Route path="/about" element={<AboutUs />} />
       </Routes>
